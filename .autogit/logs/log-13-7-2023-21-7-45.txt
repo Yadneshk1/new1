@@ -1,0 +1,20 @@
+-------------------- Auto-Git Log --------------------
+Sun Aug 13 2023 21:07:45 GMT+0530 (India Standard Time)
+------------------------------------------------------
+
+Modified files:
+
+
+Created files:
+* .autogit/autogit.json
+
+
+Deleted files:
+* .gitignore
+* gug
+* new12
+* new23
+* student.war
+
+
+Renamed files:
