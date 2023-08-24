@@ -21,7 +21,7 @@
          username="admin"
          password="admin123"
          driverClassName="com.mysql.jdbc.Driver"
-         url="jdbc:mysql://http://database-1.cwkb7gxmtd9d.ap-south-1.rds.amazonaws.com/:3306/studentapp?useUnicode=true&amp;characterEncoding=utf8"
+         url="jdbc:mysql://http://database-1.czgilwjrgbcn.us-east-1.rds.amazonaws.com:3306/studentapp?useUnicode=true&amp;characterEncoding=utf8"
          maxTotal="25"
          maxIdle="10"
          defaultTransactionIsolation="READ_COMMITTED"
