@@ -1,0 +1,15 @@
+-------------------- Auto-Git Log --------------------
+Thu Aug 24 2023 15:16:14 GMT+0530 (India Standard Time)
+------------------------------------------------------
+
+Modified files:
+* dockerfile
+
+
+Created files:
+
+
+Deleted files:
+
+
+Renamed files:
