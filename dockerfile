@@ -9,7 +9,7 @@ WORKDIR /opt/apache-tomcat-8.5.92
 ADD https://s3-us-west-2.amazonaws.com/studentapi-cit/mysql-connector.jar lib/
 ADD https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war webapps/
 COPY context.xml conf/context.xml
-RUN mysql -h endpoint -u admin -padmin123
+RUN mysql -h http://database-1.cwkb7gxmtd9d.ap-south-1.rds.amazonaws.com -u admin -padmin123
 RUN create database studentapp;
 RUN use studentapp;
 RUN CREATE TABLE if not exists students(student_id INT NOT NULL AUTO_INCREMENT,
