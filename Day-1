@@ -1,0 +1,79 @@
+## Create eks Cluster
+Step1: Create iam eks cluster role
+Step2: Cretae security Group for cluster
+Step3: Create Cluster
+Step4: Authinticate user with Cluster
+'aws eks update-kubeconfig --region region-code --name my-cluster'
+Step5: Create Node Role (ec2)
+Step6: Attach policies to NodeRole
+       - AmazonEKSWorkerNodePolicy
+       - AmazonEC2ContainerRegistryReadOnly
+       - AmazonEKS_CNI_Policy
+
+### authinticate in Eks Cluster
+Step1: Install kubectl client
+Step2: Install aws-cli
+Step3: Autthinticate in Aws cli
+Step4: ask CLUSTER ADMINISTRATOR TO PROVIDE RBAC TO THE IAM USER
+'aws eks kubectl describe -n kube-system configmap/aws-auth
+update-kubeconfig --region region-code --name my-cluster'
+
+  mapUsers: |
+    - groups:
+      - system:vikas
+      userarn: arn:aws:iam::939653110412:user/vikas
+      username: vikas
+  Step5: Aunthiticate in Eks
+      'aws eks update-kubeconfig --region region-code --name my-cluster'
+
+
+##Kubernetes object
+
+1) Pod - Wrapping around the container --smallest deployable entity od k8s
+2) Service- to expose application outside the container
+      -ClusterIp -- for static ip
+      -NodePort -- expose pod on NodeIp
+      -LoadBalancer -- expose pods on public cloud loadbalancer
+3)ReplicationController - Control replicas of the pod. It supports equality based selector.
+4)ReplicaSet - Control replicas of the pod. It Supports multiple labels and set based selector.
+5)Deployment - Control replicas of the pod. It auto update the pods. Implement deployment strategies such as rollingupdate and replace.
+6)Namespace - To segregate k8s objects
+7)Statefulset - Control replicas of the Stateful Pod
+8)DaemonSet - Will create pod for each node
+9)
+      ## Kubectl Commands
+      ## shell
+kubectl get nodes   #to get nodes information
+kubectl get <object> # to get OBJECT information
+kubectl get <object> -o wide # to get detailed information
+kubectl api-resources # to get list k8s object
+kubectl api-versions # to get list of api versions
+kubectl get ns # to get ns
+kubectl create ns dev # to create NS
+kubectl create <object> # to create objects
+kubectl create <objects> -n <NS> # create objcet in perticular ns
+kubectl run  <PODNAME> --image=<container image> -n <NS> # run pod in prticular NS
+kubectl get pods -n <NS> # to get pod in perticular NS
+######
+kubectl get pods -o wide #
+kubectl get nodes -o wide #
+kubectl run pod 
+------
+
+kubectl get pods -o wide
+kubectl get nodes -o wide
+kubectl run my-pod --image=nginx --port=80 # map container port with Pod port
+kubectl expose pod my-pod --name=my-svc  # create service clusterIP and expose Pod on it
+kubectl expose pod my-pod --name=my-svc-np --type=NodePort # create service NodePort and Expose pod
+kubectl expose pod my-pod --name=my-svc-lb --type=LoadBalancer # create service Loadbalancer and Expose Pod
+#23/2/2023
+kubectl apply -f <MANIFESTFILE> # to apply manifest
+#24/2/2023
+kubectl scale <OBJECT> <OBJECT_NAME> --replicas=<NUM>  # to scale up/down pods using rs/rc/deployment/statefulset
+kuebctl describe <object> <OBJECT_NAME>  # to get detailed info about objects
+kubectl logs <POD_NAME>  # to get logs of the pods
+kubectl edit <OBJECT> <OBJECT__NAME>  # to edit existing objects
+kubectl exec -it <POD_NAME> --container=<CONTAINER_NAME> -- COMMAND  # to execute command inside the container
+kubectl delete -f <MANIFESTFILE> # to delete manifested objects
+kubectl delete <OBJECT_NAME> # to delete objects
+kubectl cp index.html <NAMESPACE>/my-pod:/usr/share/nginx/html/index.html # to copy files

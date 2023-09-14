@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  labels: 
+    app: mysql
+spec:
+  containers:
+    - name: mysql
+      image: mysql
+      ports:
+      - containerPort: 3306
+      env:
+      - name: MYSQL_ROOT_PASSWORD
+        valueFrom:
+          configMapKeyRef:
+            key: MYSQL_PASSWORD 
+            name: my-cm
+
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-creds
+  labels:
+    app: my-app
+data:
+  MYSQL_PASSWORD: cmVkaGF0
+

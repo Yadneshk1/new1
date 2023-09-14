@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: my-ds
+  labels:
+    app: my-app
+spec: 
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      name: my-pod
+      labels:
+        app: my-app
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: node01
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80

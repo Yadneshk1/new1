@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-ss
+  labels:
+    app: my-app
+spec: 
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  serviceName: nginx
+  template:
+    metadata:
+      name: my-pod
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 3306
